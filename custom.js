@@ -52,15 +52,19 @@ function injectHeaderElements() {
 
 // --- 2. BOUTON SIGNALER UN PROBLÈME (DISCORD) ---
 function injectReportButton() {
-    let detailButtons = document.querySelector('.detailButtons');
+    // On cherche le bouton "Lecture" au lieu du conteneur parent
+    let playBtn = document.querySelector('.btnPlay');
     
-    // Si on est sur une fiche de film/série et que le bouton n'existe pas encore
-    if (detailButtons && !document.querySelector('.btn-report-discord')) {
+    // Si on trouve le bouton Lecture et qu'on n'a pas encore ajouté le nôtre
+    if (playBtn && playBtn.parentElement && !document.querySelector('.btn-report-discord')) {
+        let detailButtonsContainer = playBtn.parentElement; // On s'accroche au même niveau que le bouton Play
+
         let reportBtn = document.createElement('button');
         reportBtn.className = 'btn-report-discord raised detailButton emby-button';
         reportBtn.innerHTML = '<i class="material-icons" style="margin-right: 5px;">report_problem</i> Signaler';
-        // Style du bouton (rouge vif)
-        reportBtn.style.cssText = 'background: #e50914; color: white; border-radius: 4px; padding: 10px 20px; font-weight: bold; display: flex; align-items: center; margin-left: 10px; transition: transform 0.2s; border: none; cursor: pointer;';
+        
+        // Style du bouton
+        reportBtn.style.cssText = 'background: #e50914 !important; color: white !important; border-radius: 4px !important; padding: 10px 15px !important; font-weight: bold !important; display: flex !important; align-items: center !important; margin-left: 15px !important; border: none !important; cursor: pointer !important; transition: transform 0.2s !important;';
         
         reportBtn.onmouseover = () => reportBtn.style.transform = 'scale(1.05)';
         reportBtn.onmouseout = () => reportBtn.style.transform = 'scale(1)';
@@ -90,7 +94,9 @@ function injectReportButton() {
                 });
             }
         };
-        detailButtons.appendChild(reportBtn);
+        
+        // On l'ajoute à la fin de la rangée de boutons (après les favoris, etc.)
+        detailButtonsContainer.appendChild(reportBtn);
     }
 }
 
