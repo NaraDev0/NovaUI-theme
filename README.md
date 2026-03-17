@@ -33,7 +33,7 @@ La méthode la plus simple est d'importer le fichier CSS directement depuis votr
 1. Allez dans **Tableau de bord** > **Général**
 2. Descendez jusqu'à la section **CSS personnalisé (Custom CSS)**
 3. Copiez et collez la ligne suivante : 
-@import url('[https://cdn.jsdelivr.net/gh/NaraDev0/jellyfin-css@main/style.css](https://cdn.jsdelivr.net/gh/NaraDev0/jellyfin-css@main/style.css)');
+@import url('[https://cdn.jsdelivr.net/gh/NaraDev0/jellyfin-css@main/style.css](https://cdn.jsdelivr.net/gh/NaraDev0/NovaUI-theme@main/style.css)');
 
 4.  Cliquez sur **Sauvegarder**.
 5.  Retournez sur l'accueil de votre Jellyfin et videz le cache de votre navigateur (`Ctrl + F5` ou `Cmd + Shift + R`) pour appliquer le thème.
