@@ -23,7 +23,6 @@ Ce CSS intègre des correctifs natifs pour s'adapter parfaitement aux meilleurs 
 
 ## 📸 Aperçu
 
-*(Remplace ces lignes par tes propres images en les glissant-déposant dans l'éditeur GitHub)*
 ![Accueil](https://media.discordapp.net/attachments/1453117739760877641/1483453599899193374/image.png?ex=69baa553&is=69b953d3&hm=73d744705092281acc74af348ee22fa8825ae5ba6c245fc6c937ee5ed0b9be1c&=&format=webp&quality=lossless&width=2230&height=1088)
 ![Page de Connexion](https://media.discordapp.net/attachments/1453117739760877641/1483454905317593199/connexion.png?ex=69baa68a&is=69b9550a&hm=4e9d8b13f905f7dd3ff353be99ad31c0afb497ba3aef4de468a79c01e2289c8a&=&format=webp&quality=lossless&width=2230&height=1088)
 
