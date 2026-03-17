@@ -1,4 +1,6 @@
-/* Branding - Importations Ultrachromic */
+/* ================================================================
+   Branding - Importations Ultrachromic
+   ================================================================ */
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fixes.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/jf_font.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/base.css');
@@ -14,7 +16,6 @@
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/hoverglow.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/glassy.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/pan-animation.css');
-/* Import Monochromic retiré — conflit potentiel avec Ultrachromic */
 
 /* Variables globales */
 :root { 
@@ -23,55 +24,72 @@
 }
 
 /* ================================================================
-   BARRE DE DÉFILEMENT (SCROLLBAR) PERSONNALISÉE
+   CORRECTIONS DE BUGS (Scroll horizontal & Login bloqué)
    ================================================================ */
 
-/* Firefox */
+/* Correction du défilement horizontal (scroll droite/gauche) */
+html, body, .skinBody, .mainAnimatedPages, .mainDrawer, .skinHeader, .page {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100%;
+}
+.emby-scroller { max-width: 100% !important; }
+
+/* Correction : Écran de connexion qui reste bloqué en arrière-plan */
+#loginPage.hide, .page.hide {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: -10 !important;
+}
+.backgroundContainer.withBackdrop { z-index: -1 !important; }
+
+
+/* ================================================================
+   BARRE DE DÉFILEMENT (SCROLLBAR) PERSONNALISÉE
+   ================================================================ */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgb(var(--accent)) rgba(11, 11, 12, 0.5);
 }
-
-/* Chrome / Safari / Edge */
-::-webkit-scrollbar {
-  width: 8px !important;
-  height: 8px !important;
-}
-::-webkit-scrollbar-track {
-  background: rgba(11, 11, 12, 0.5) !important;
-}
+::-webkit-scrollbar { width: 8px !important; height: 8px !important; }
+::-webkit-scrollbar-track { background: rgba(11, 11, 12, 0.5) !important; }
 ::-webkit-scrollbar-thumb {
   background: rgb(var(--accent)) !important;
   border-radius: 10px !important;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--accent), 0.8) !important;
-}
+::-webkit-scrollbar-thumb:hover { background: rgba(var(--accent), 0.8) !important; }
+
 
 /* ================================================================
-   MODIFICATION DE LA BARRE DU HAUT (HEADER)
+   HEADER & MENU LATÉRAL (Glassmorphism)
    ================================================================ */
 .skinHeader, .skinHeader.semiTransparent, .skinHeader.osdHeader {
-  background: linear-gradient(to bottom, rgba(11, 11, 12, 0.95) 0%, rgba(11, 11, 12, 0) 100%) !important;
-  background-color: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: rgba(11, 11, 12, 0.7) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
   box-shadow: none !important;
   padding-top: 15px !important;
   transition: background 0.3s ease !important;
 }
+.mainDrawer {
+  background: rgba(11, 11, 12, 0.9) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+}
+
 
 /* ================================================================
    STYLE DES FONDS ET BACKDROP
    ================================================================ */
 .backdropImage { filter: blur(3px) saturate(110%) contrast(110%) brightness(50%); }
-
 .backgroundContainer.withBackdrop { background-color: rgba(11, 11, 12, 0.7) !important; }
-.pageContainer, .mainDrawer, .skinBody { background-color: #0b0b0c !important; }
-
+.pageContainer, .skinBody { background-color: #0b0b0c !important; }
 .homeSectionsContainer {
   background: linear-gradient(to bottom, transparent 0%, #0b0b0c 10%, #0b0b0c 100%) !important;
 }
+
 
 /* ================================================================
    ICONES MATERIAL OUTLINED
@@ -82,7 +100,6 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v55/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
 }
-
 .material-icons {
   font-family: 'Material Icons Outlined' !important;
   font-weight: normal;
@@ -92,7 +109,6 @@
   display: inline-block;
   -webkit-font-smoothing: antialiased;
 }
-
 .material-icons.play_circle_filled:before { content: "\e039"; }
 .material-icons.favorite:before           { content: "\e87e"; }
 .material-icons.info_outline:before       { content: "\e88e"; }
@@ -102,86 +118,46 @@
 /* ================================================================
    STYLE DES AFFICHES (CARDS) ET SURVOL SUPER SMOOTH
    ================================================================ */
-
-/* Conteneur de l'image de l'affiche */
-.cardImageContainer {
-  border-radius: 8px !important;
-  overflow: hidden !important;
-}
-
-/* Gestion du zoom et de l'ombre au survol — will-change pour la fluidité GPU */
+.cardImageContainer { border-radius: 8px !important; overflow: hidden !important; }
 .cardBox {
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease !important;
   border-radius: 8px !important;
   will-change: transform;
 }
-
 .card:hover .cardBox {
   transform: scale(1.06) !important;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(var(--accent), 0.2) !important;
 }
-
-/* Annule tout scale sur l'image seule pour éviter les bugs de débordement */
-.card:hover .cardImageContainer {
-  transform: none !important;
-}
-
-/* Assurer que l'affiche survolée passe au-dessus des autres */
-.card:hover {
-  z-index: 10 !important;
-}
-
-/* Fondu noir et bouton play au survol de l'affiche */
+.card:hover .cardImageContainer { transform: none !important; }
+.card:hover { z-index: 10 !important; }
 .cardOverlayContainer {
   background-color: rgba(0, 0, 0, 0.6) !important;
   opacity: 0 !important;
   transition: opacity 0.3s ease !important;
   border-radius: 8px !important;
 }
-.card:hover .cardOverlayContainer {
-  opacity: 1 !important;
-}
-
-/* Icône de lecture au survol plus épurée */
+.card:hover .cardOverlayContainer { opacity: 1 !important; }
 .cardOverlayFab-primary {
   background-color: transparent !important;
   transition: transform 0.3s ease !important;
 }
-.cardOverlayFab-primary:hover {
-  transform: scale(1.2) !important;
-}
+.cardOverlayFab-primary:hover { transform: scale(1.2) !important; }
 
-/* Barre de progression (Films/Séries en cours) */
-.itemProgressBar {
-  background: rgba(255, 255, 255, 0.2) !important;
-  height: 4px !important;
-  border-radius: 0 0 8px 8px !important;
-}
-.itemProgressBarForeground {
-  background-color: rgb(var(--accent)) !important;
-  border-radius: 0 0 0 8px !important;
-}
 
 /* ================================================================
-   PAGE DE DÉTAILS D'UN FILM/SÉRIE (ITEM PAGE)
+   PAGE DE DÉTAILS D'UN FILM/SÉRIE
    ================================================================ */
-
-/* Conteneur principal - Laisse respirer l'image de fond */
 .detailPageWrapperContainer {
   margin-top: 30vh !important; 
   background: linear-gradient(to top, #0b0b0c 0%, #0b0b0c 70%, transparent 100%) !important;
   padding-top: 40px !important;
 }
-
-/* Logo du film */
 .detailLogo {
   max-width: 35vw !important;
   filter: drop-shadow(0px 6px 12px rgba(0,0,0,0.8)) !important;
   margin-bottom: 1.5rem !important;
   transition: transform 0.3s ease !important;
 }
-
-/* Informations diverses (Année, Durée, Classification) */
 .itemMiscInfo, .itemMiscInfoPrimary {
   display: flex !important;
   align-items: center !important;
@@ -190,8 +166,6 @@
   color: #a3a3a3 !important;
   margin-bottom: 20px !important;
 }
-
-/* Typographie du résumé (Plot) */
 .detail-clamp-text {
   font-size: 1.15rem !important;
   line-height: 1.6 !important;
@@ -199,18 +173,12 @@
   max-width: 65vw !important;
   text-shadow: 1px 1px 5px rgba(0,0,0,0.9) !important;
 }
-
-/* ================================================================
-   BOUTONS DE LA PAGE DÉTAILS
-   ================================================================ */
 .detailButtons {
   margin-top: 30px !important;
   display: flex !important;
   gap: 15px !important;
   align-items: center !important;
 }
-
-/* Bouton Lecture principal façon Netflix */
 .btnPlay.detailButton {
   background: #ffffff !important;
   color: #000000 !important;
@@ -222,7 +190,6 @@
   transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
 }
-
 .btnPlay.detailButton:hover {
   transform: scale(1.05) !important;
   background: rgba(255, 255, 255, 0.85) !important;
@@ -231,10 +198,7 @@
 /* ================================================================
    SECTION CASTING (ACTEURS) EN RONDS
    ================================================================ */
-#castContent .card {
-  width: 150px !important;
-}
-
+#castContent .card { width: 150px !important; }
 #castContent .cardBox {
   border-radius: 50% !important;
   overflow: hidden !important;
@@ -243,120 +207,73 @@
   transition: all 0.3s ease !important;
   will-change: transform;
 }
-
-#castContent .cardImageContainer {
-  border-radius: 50% !important;
-}
-
+#castContent .cardImageContainer { border-radius: 50% !important; }
 #castContent .cardImage {
   object-fit: cover !important;
   height: 100% !important;
   width: 100% !important;
 }
-
 #castContent .card:hover .cardBox {
   transform: scale(1.12) !important;
   box-shadow: 0 8px 25px rgba(var(--accent), 0.25) !important;
 }
+#castContent .cardText { text-align: center !important; margin-top: 10px !important; }
+#castContent .cardText-first { font-weight: bold !important; color: #ffffff !important; }
+#castContent .cardText-secondary { font-size: 0.85rem !important; color: #a3a3a3 !important; }
 
-#castContent .cardText {
-  text-align: center !important;
-  margin-top: 10px !important;
-}
-
-#castContent .cardText-first {
-  font-weight: bold !important;
-  color: #ffffff !important;
-}
-
-#castContent .cardText-secondary {
-  font-size: 0.85rem !important;
-  color: #a3a3a3 !important;
-}
 
 /* ================================================================
-   LECTEUR VIDÉO (OSD - ON SCREEN DISPLAY)
+   LECTEUR VIDÉO (OSD)
    ================================================================ */
-
-/* Dégradé sombre en bas pour les contrôles */
 .videoOsdBottom {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
   padding-top: 50px !important;
   padding-bottom: 20px !important;
 }
-
-/* Barre de progression */
-.mdl-slider-background-lower {
-  background-color: rgb(var(--accent)) !important;
-}
-
-.mdl-slider-background-upper {
-  background-color: rgba(255, 255, 255, 0.25) !important;
-}
-
-/* Curseur rond sur la barre de progression */
+.mdl-slider-background-lower { background-color: rgb(var(--accent)) !important; }
+.mdl-slider-background-upper { background-color: rgba(255, 255, 255, 0.25) !important; }
 .mdl-slider::-webkit-slider-thumb {
   background: rgb(var(--accent)) !important;
   transform: scale(0.8) !important;
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
 }
-
-.mdl-slider:hover::-webkit-slider-thumb {
-  transform: scale(1.3) !important;
-}
-
-/* Boutons du lecteur */
+.mdl-slider:hover::-webkit-slider-thumb { transform: scale(1.3) !important; }
 .osdIconButton {
   color: rgba(255, 255, 255, 0.8) !important;
   transition: all 0.2s ease !important;
 }
-
 .osdIconButton:hover {
   color: #ffffff !important;
   transform: scale(1.15) !important;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;
 }
-
-/* Compteurs de temps */
 .videoOsdPositionText, .videoOsdDurationText {
   font-weight: 500 !important;
   font-size: 0.95rem !important;
   color: #e5e5e5 !important;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
 }
-
-/* Titre du film pendant la lecture */
 .videoOsdTitle {
   font-size: 1.5rem !important;
   font-weight: bold !important;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9) !important;
 }
 
+
 /* ================================================================
    PAGE DE CONNEXION (GLASSMORPHISM)
    ================================================================ */
-
-/* Fond transparent pour laisser l'image visible */
-#loginPage,
-#loginPage .pageContainer,
-#loginPage .skinBody {
+#loginPage, #loginPage .pageContainer, #loginPage .skinBody {
   background-color: transparent !important;
 }
-
 #loginPage { 
   background: url('https://i.imgur.com/9vL4iNf.png') center/cover no-repeat !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
-
-#loginPage .scrollY {
-  height: auto !important;
-  width: 100% !important;
-}
-
-/* Carte de connexion glassmorphism */
+#loginPage .scrollY { height: auto !important; width: 100% !important; }
 #loginPage .padded-left.padded-right.padded-bottom-page {
   background: rgba(20, 20, 25, 0.4) !important;
   backdrop-filter: blur(25px) saturate(120%) !important;
@@ -369,13 +286,7 @@
   margin: auto !important;
   width: 100% !important;
 }
-
-/* Masquer le logo sur le formulaire */
-#loginPage h1 {
-  display: none !important; 
-}
-
-/* Champs de texte */
+#loginPage h1 { display: none !important; }
 #loginPage .inputContainer .emby-input {
   background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -385,20 +296,15 @@
   font-size: 1.1rem !important;
   transition: all 0.3s ease !important;
 }
-
 #loginPage .inputContainer .emby-input:focus {
   border-color: rgb(var(--accent)) !important;
   box-shadow: 0 0 15px rgba(var(--accent), 0.3) !important;
   outline: none !important;
 }
-
-/* Labels */
 #loginPage .inputContainer .inputLabel {
   color: rgba(255, 255, 255, 0.7) !important;
   font-size: 0.95rem !important;
 }
-
-/* Bouton de connexion */
 #loginPage .raised {
   background: rgb(var(--accent)) !important;
   color: #ffffff !important;
@@ -411,17 +317,13 @@
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
   margin-top: 20px !important;
 }
-
 #loginPage .raised:hover {
   transform: translateY(-3px) !important;
   box-shadow: 0 10px 25px rgba(var(--accent), 0.5) !important;
   background: rgb(var(--accent)) !important;
   filter: brightness(1.2) !important;
 }
-
-/* Reset anciens styles login */
-#loginPage .readOnlyContent, 
-#loginPage form {
+#loginPage .readOnlyContent, #loginPage form {
   background: transparent !important;
   backdrop-filter: none !important;
   box-shadow: none !important;
@@ -430,26 +332,61 @@
   max-width: 100% !important;
 }
 
+
+/* ================================================================
+   COMPATIBILITÉ ADDONS (JellyFlare, Intro Skipper, Media Bar)
+   ================================================================ */
+
+/* JELLYFLARE - Force l'affichage sous la barre de navigation */
+.jellyflare-banner, #jellyflare, [class*="jellyflare"] {
+    z-index: 99999 !important;
+    position: relative !important;
+    margin-top: 80px !important; /* Espace pour le header */
+    border-radius: 8px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* INTRO SKIPPER - Bouton flottant type Netflix */
+.skipIntro, .btnSkipIntro, .intro-skipper-button {
+    background-color: rgba(20, 20, 20, 0.8) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    transition: all 0.2s ease !important;
+    bottom: 120px !important; /* Au-dessus de la barre vidéo */
+    right: 30px !important;
+    z-index: 9999 !important;
+}
+.skipIntro:hover, .btnSkipIntro:hover, .intro-skipper-button:hover {
+    background-color: white !important;
+    color: black !important;
+    transform: scale(1.05) !important;
+    border-color: white !important;
+}
+
+/* MEDIA BAR - Harmonisation des bordures */
+.mediaBar, .itemProgressBar {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+.playbackProgress {
+    border-radius: 4px !important;
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+
 /* ================================================================
    RESPONSIVE — MOBILE & PETITS ÉCRANS
    ================================================================ */
 @media (max-width: 768px) {
-  .detailPageWrapperContainer {
-    margin-top: 15vh !important;
-  }
-
-  .detail-clamp-text {
-    max-width: 90vw !important;
-  }
-
-  .detailLogo {
-    max-width: 70vw !important;
-  }
-  /* ================================================================
-   CORRECTION SCROLL HORIZONTAL ET BUGS RESPONSIVE
-   ================================================================ */
-    html, body, .skinBody, .mainAnimatedPages {
-        overflow-x: hidden !important;
-        max-width: 100vw !important;
-    }
+  .detailPageWrapperContainer { margin-top: 15vh !important; }
+  .detail-clamp-text { max-width: 90vw !important; }
+  .detailLogo { max-width: 70vw !important; }
 }
