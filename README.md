@@ -35,7 +35,7 @@ Ce thème intègre des correctifs natifs pour s'adapter parfaitement aux meilleu
 
 ## 🚀 Installation rapide
 
-### 1. [Installer le Design (CSS)](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector)
+### 1. Installer le Design (CSS)
 La méthode la plus simple est d'importer le fichier CSS directement depuis votre serveur Jellyfin.
 1. Allez dans **Tableau de bord** > **Général**
 2. Descendez jusqu'à la section **CSS personnalisé (Custom CSS)**
@@ -47,7 +47,7 @@ La méthode la plus simple est d'importer le fichier CSS directement depuis votr
 4. Cliquez sur **Sauvegarder** et videz le cache de votre navigateur (`Ctrl + F5` ou `Cmd + Shift + R`).
 
 ### 2. Installer les Fonctionnalités Intelligentes (JavaScript - Optionnel)
-Nécessite le plugin **JavaScript Injector** installé sur votre serveur Jellyfin.
+Nécessite le plugin [**JavaScript Injector**](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector) installé sur votre serveur Jellyfin.
 1. Allez dans **Tableau de bord** > **Plugins** > **JavaScript Injector**
 2. Ajoutez un nouveau script, configurez-le sur **Global** (toutes les pages).
 3. Copiez et collez le code suivant *(N'oubliez pas d'ajouter l'URL de votre Webhook si vous souhaitez utiliser le bouton de signalement)* :
