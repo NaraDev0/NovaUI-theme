@@ -35,7 +35,7 @@ Ce thème intègre des correctifs natifs pour s'adapter parfaitement aux meilleu
 
 ## 🚀 Installation rapide
 
-### 1. Installer le Design (CSS)
+### 1. [Installer le Design (CSS)](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector)
 La méthode la plus simple est d'importer le fichier CSS directement depuis votre serveur Jellyfin.
 1. Allez dans **Tableau de bord** > **Général**
 2. Descendez jusqu'à la section **CSS personnalisé (Custom CSS)**
